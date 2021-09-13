@@ -1,17 +1,23 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("P")
+@XmlRootElement(name = "prof")
 @NamedQueries(
         {
-                @NamedQuery(name="tousLesProfessionnelsParNom", query="SELECT p FROM Professionnel p WHERE p.nom LIKE CONCAT('%',:name,'%') ORDER BY p.nom")
+                @NamedQuery(name="tousLesProfessionnelsParNom", query="SELECT p FROM Professionnel p WHERE p.nom LIKE CONCAT('%',:name,'%') ORDER BY p.nom"),
+                @NamedQuery(name="tousLesProfessionnelsParId", query="SELECT p FROM Professionnel p WHERE p.id =:id")
         }
 )
-public class Professionnel extends Personne{
+
+public class Professionnel extends Personne {
 
     private Departement departement;
 
@@ -26,6 +32,7 @@ public class Professionnel extends Personne{
     }
 
     @ManyToOne
+    @JsonIgnore
     public Departement getDepartement() {
         return departement;
     }

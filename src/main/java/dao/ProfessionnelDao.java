@@ -43,5 +43,10 @@ public class ProfessionnelDao {
         }
     }
 
+    public Professionnel professionnelsParId(Long id){
+        return (Professionnel) manager.createNamedQuery("tousLesProfessionnelsParId").setParameter("id", id).getSingleResult();
+
+    }
+
 
 }
