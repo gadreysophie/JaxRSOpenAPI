@@ -3,7 +3,6 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import domain.Utilisateur;
 
@@ -34,6 +33,10 @@ public class UtilisateurDao {
 
     public List<Utilisateur> listUtilisateurs() {
         return manager.createQuery("Select a From Utilisateur a", Utilisateur.class).getResultList();
+    }
+
+    public Utilisateur searchUserById(Long id){
+        return (Utilisateur) manager.createNamedQuery("searchUserById").setParameter("id", id).getSingleResult();
     }
 
     public void addUser(Utilisateur user){

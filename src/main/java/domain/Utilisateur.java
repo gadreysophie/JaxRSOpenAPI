@@ -8,6 +8,11 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("U")
 @XmlRootElement(name = "user")
+@NamedQueries(
+        {
+                @NamedQuery(name="searchUserById", query="SELECT u FROM Utilisateur u WHERE u.id =:id")
+        }
+)
 public class Utilisateur extends Personne {
 
     private List<Rdv> rdvs = new ArrayList<>();
