@@ -1,11 +1,13 @@
 package domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("U")
+@XmlRootElement(name = "user")
 public class Utilisateur extends Personne {
 
     private List<Rdv> rdvs = new ArrayList<>();

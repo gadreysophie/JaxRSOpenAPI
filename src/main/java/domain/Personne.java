@@ -1,9 +1,13 @@
 package domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
     @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
+@XmlRootElement(name = "personne")
 public abstract class Personne {
 
     private Long id;
@@ -30,6 +34,7 @@ public abstract class Personne {
 
     @Id
     @GeneratedValue
+    @XmlElement(name = "id")
     public Long getId() {
         return id;
     }
