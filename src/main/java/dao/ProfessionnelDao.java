@@ -1,16 +1,16 @@
 package dao;
 
+import java.sql.Time;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import domain.Departement;
 import domain.Professionnel;
-import domain.Utilisateur;
 
 public class ProfessionnelDao {
 
-    private EntityManager manager;
+    private final EntityManager manager;
 
     public ProfessionnelDao (EntityManager manager) {
         this.manager = manager;
@@ -19,11 +19,11 @@ public class ProfessionnelDao {
     public void createProfessionnels() {
         int numOfEmployees = manager.createQuery("Select a From Professionnel a", Professionnel.class).getResultList().size();
         if (numOfEmployees == 0) {
-            Departement departement = new Departement("Java");
-            manager.persist(departement);
+            DepartementDao departementDao = new DepartementDao(manager);
 
-            manager.persist(new Professionnel("Prof 1",departement));
-            manager.persist(new Professionnel("Prof 2",departement));
+            Departement departement = departementDao.departementsParId(1L);
+            manager.persist(new Professionnel("Prof 1",departement, Time.valueOf("10:30:00"), Time.valueOf("12:30:00"), Time.valueOf("13:30:00"), Time.valueOf("18:00:00"),"1110110"));
+            manager.persist(new Professionnel("Prof 2",departement, Time.valueOf("9:00:00"), Time.valueOf("12:00:00"), Time.valueOf("14:00:00"), Time.valueOf("17:00:00"),"1110110"));
 
         }
     }

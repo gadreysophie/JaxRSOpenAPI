@@ -16,17 +16,15 @@ public class TypeRdvDao {
     public void createTypeRdvs() {
         int numOfTypeRdvs = manager.createQuery("Select a From TypeRdv a", TypeRdv.class).getResultList().size();
         if (numOfTypeRdvs == 0) {
-            Departement departement = new Departement("Java2");
-            Professionnel professionnel = new Professionnel("Prof 3", departement);
-            manager.persist(departement);
-            manager.persist(professionnel);
+            ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
 
+            Professionnel professionnel = professionnelDao.professionnelsParId(4L);
             manager.persist(new TypeRdv("Rdv 1", professionnel, 15));
             manager.persist(new TypeRdv("Rdv 2", professionnel, 30));
         }
     }
 
-    public void listRdvs() {
+    public void listTypeRdvs() {
         List<TypeRdv> resultList = manager.createQuery("Select a From TypeRdv a", TypeRdv.class).getResultList();
         System.out.println("Nombre de TypeRdvs :" + resultList.size());
         for (TypeRdv next : resultList) {

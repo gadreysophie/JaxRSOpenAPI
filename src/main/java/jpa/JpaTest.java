@@ -9,9 +9,6 @@ import javax.persistence.Persistence;
 
 public class JpaTest {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("dev");
@@ -36,9 +33,9 @@ public class JpaTest {
 
 			utilisateurDao.createUtilisateurs();
 
-			rdvDao.createRdvs();
-
 			typeRdvDao.createTypeRdvs();
+
+			rdvDao.createRdvs();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,7 +49,7 @@ public class JpaTest {
 		utilisateurDao.printlistUtilisateurs();
 		rdvDao.listRdvs();
 		personneDao.listPersonnes();
-		typeRdvDao.listRdvs();
+		typeRdvDao.listTypeRdvs();
 
 		manager.close();
 		factory.close();

@@ -64,4 +64,9 @@ public class TypeRdv {
     public void setProfessionnel(Professionnel professionnel) {
         this.professionnel = professionnel;
     }
+
+    @Override
+    public String toString() {
+        return "Type de RDV [id=" + id + ", professionnel=" + professionnel + ", nom=" + nom + ", durée=" + duree + "]";
+    }
 }

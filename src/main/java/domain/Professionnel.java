@@ -5,11 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Time;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @DiscriminatorValue("P")
@@ -39,9 +37,15 @@ public class Professionnel extends Personne {
     public Professionnel() {
     }
 
-    public Professionnel(String name, Departement department) {
+    public Professionnel(String name, Departement department, Time heureDebut, Time heureFin, Time heureDebutPause,
+                         Time heureFinPause, String joursDePresence) {
         super(name);
         this.departement = department;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.heureDebutPause = heureDebutPause;
+        this.heureFinPause = heureFinPause;
+        this.joursDePresence = joursDePresence;
     }
 
     @ManyToOne
