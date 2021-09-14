@@ -6,10 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.text.ParseException;
 
 public class JpaTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("dev");
 		//EntityManagerFactory factory = Persistence
@@ -50,6 +51,10 @@ public class JpaTest {
 		rdvDao.listRdvs();
 		personneDao.listPersonnes();
 		typeRdvDao.listTypeRdvs();
+
+		rdvDao.listRdvTest();
+		typeRdvDao.listTypeRdvTest();
+		rdvDao.testListCreneauxDispo();
 
 		manager.close();
 		factory.close();
