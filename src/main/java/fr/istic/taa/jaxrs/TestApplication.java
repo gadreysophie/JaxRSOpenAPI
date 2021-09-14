@@ -23,10 +23,7 @@ import javax.ws.rs.core.Application;
 
 import domain.Professionnel;
 import domain.Rdv;
-import fr.istic.taa.jaxrs.rest.PetResource;
-import fr.istic.taa.jaxrs.rest.ProfessionnelResource;
-import fr.istic.taa.jaxrs.rest.RdvResource;
-import fr.istic.taa.jaxrs.rest.UserResource;
+import fr.istic.taa.jaxrs.rest.*;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
 public class TestApplication extends Application {
@@ -41,8 +38,8 @@ public class TestApplication extends Application {
         clazzes.add(UserResource.class);
         clazzes.add(ProfessionnelResource.class);
         clazzes.add(RdvResource.class);
+        clazzes.add(DepartementResource.class);
         clazzes.add(OpenApiResource.class);
-        
 
         return clazzes;
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import domain.Departement;
+import domain.Professionnel;
 
 public class DepartementDao {
 
@@ -28,5 +29,14 @@ public class DepartementDao {
         for (Departement next : resultList) {
             System.out.println("Département suivant : " + next);
         }
+    }
+
+    public Departement departementsParId(Long id){
+        return (Departement) manager.createNamedQuery("tousLesDepartementsParId").setParameter("id", id).getSingleResult();
+
+    }
+
+    public void addDepartement (Departement departement){
+        manager.persist(departement);
     }
 }

@@ -4,8 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement(name = "dept")
+@NamedQueries(
+        {
+                @NamedQuery(name="tousLesDepartementsParId", query="SELECT p FROM Departement p WHERE p.id =:id")
+        }
+)
 public class Departement {
     private Long id;
 
