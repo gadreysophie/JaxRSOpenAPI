@@ -84,11 +84,9 @@ public class RdvDao {
             List<Rdv> resultCreneauxRes = rdvsParProfessionnelEtDate(prof, date);
             Integer dureeTypeRdv = typeRdv.getDuree();
 
-
-            // Minimum duree
             TypeRdvDao typeRdvDao = new TypeRdvDao(manager);
-            //Integer minDuree = ;
-            System.out.println("\nDuree minimum : " + typeRdvDao.minDureeTypeRdvByProf(prof));
+            Integer minDuree = typeRdvDao.minDureeTypeRdvByProf(prof);
+
             // Generate liste de creneaux dispo
 
         }
