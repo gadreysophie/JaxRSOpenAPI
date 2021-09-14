@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -32,16 +33,20 @@ public class Rdv {
     public Rdv() {
     }
 
-    public Rdv(TypeRdv typeRdv, Professionnel professionnel, Utilisateur utilisateur, Date dateDebut, Date dateFin) {
+    public Rdv(TypeRdv typeRdv, Professionnel professionnel, Utilisateur utilisateur, Date dateDebut) {
         this.typeRdv = typeRdv;
         this.professionnel = professionnel;
         this.utilisateur = utilisateur;
         this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(dateDebut);
+        c.add(Calendar.MINUTE, typeRdv.getDuree());
+        this.dateFin = c.getTime();
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator="generatorIdRdv")
     public Long getId() {
         return id;
     }
