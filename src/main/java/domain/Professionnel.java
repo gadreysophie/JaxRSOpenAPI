@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @Entity
@@ -18,7 +17,6 @@ import java.util.List;
                 @NamedQuery(name="tousLesProfessionnelsParId", query="SELECT p FROM Professionnel p WHERE p.id =:id")
         }
 )
-
 public class Professionnel extends Personne {
 
     private Departement departement;
@@ -49,6 +47,18 @@ public class Professionnel extends Personne {
         this.joursDePresence = joursDePresence;
     }
 
+    public Professionnel(String nom, String prenom, String identifiant, String mail, String mdp, Departement department,
+                         Time heureDebut, Time heureFin, Time heureDebutPause, Time heureFinPause,
+                         String joursDePresence) {
+        super(nom, prenom, identifiant, mail, mdp);
+        this.departement = department;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.heureDebutPause = heureDebutPause;
+        this.heureFinPause = heureFinPause;
+        this.joursDePresence = joursDePresence;
+    }
+
     @ManyToOne
     @JsonIgnore
     public Departement getDepartement() {
@@ -60,6 +70,7 @@ public class Professionnel extends Personne {
     }
 
     @OneToMany(mappedBy = "professionnel", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<Rdv> getRdvs() {
         return rdvs;
     }
@@ -67,7 +78,6 @@ public class Professionnel extends Personne {
     public void setRdvs(List<Rdv> rdvs){
         this.rdvs = rdvs;
     }
-
 
     public Time getHeureDebut() {
         return heureDebut;
@@ -110,6 +120,7 @@ public class Professionnel extends Personne {
     }
 
     @OneToMany(mappedBy = "professionnel", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<TypeRdv> getTypeDeRdv() {
         return typeDeRdv;
     }
