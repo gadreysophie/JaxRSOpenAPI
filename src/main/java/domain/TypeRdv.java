@@ -12,7 +12,8 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name="tousLesTypeRdvParId", query="SELECT t FROM TypeRdv t WHERE t.id =:id"),
-                @NamedQuery(name="tousLesTypeRdvParProf", query="SELECT t FROM TypeRdv t WHERE t.professionnel =:prof")
+                @NamedQuery(name="tousLesTypeRdvParProf", query="SELECT t FROM TypeRdv t WHERE t.professionnel =:prof"),
+                @NamedQuery(name="minDureeTypeRdvByProf", query="SELECT MIN(t.duree) FROM TypeRdv t WHERE t.professionnel =:prof"),
         }
 )
 
@@ -37,7 +38,7 @@ public class TypeRdv {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator="idTypeRdv")
     public Long getId() {
         return id;
     }
@@ -73,6 +74,7 @@ public class TypeRdv {
     }
 
     @OneToMany(mappedBy = "typeRdv", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<Rdv> getRdvs() {
         return rdvs;
     }
