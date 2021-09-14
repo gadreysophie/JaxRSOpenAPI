@@ -18,12 +18,12 @@ public class UtilisateurDao {
     public void createUtilisateurs() {
         int numOfUsers = manager.createQuery("Select a From Utilisateur a", Utilisateur.class).getResultList().size();
         if (numOfUsers == 0) {
-            manager.persist(new Utilisateur("User 1"));
-            manager.persist(new Utilisateur("User 2"));
+            manager.persist(new Utilisateur("Gadrey","Sophie","sgadrey","sgadrey@univrennes.fr","sgadrey"));
+            manager.persist(new Utilisateur("Le Chenadec","Erwann","elechenadec","elechenadec@univrennes.fr","elechenadec"));
         }
     }
 
-    public void printlistUtilisateurs() {
+    public void printListUtilisateurs() {
         List<Utilisateur> resultList = manager.createQuery("Select a From Utilisateur a", Utilisateur.class).getResultList();
         System.out.println("Nombre d'utilisateurs : " + resultList.size());
         for (Utilisateur next : resultList) {

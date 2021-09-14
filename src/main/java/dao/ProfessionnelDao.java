@@ -22,9 +22,13 @@ public class ProfessionnelDao {
             DepartementDao departementDao = new DepartementDao(manager);
 
             Departement departement = departementDao.departementsParId(1L);
-            manager.persist(new Professionnel("Prof 1",departement, Time.valueOf("10:30:00"), Time.valueOf("12:30:00"), Time.valueOf("13:30:00"), Time.valueOf("18:00:00"),"1110110"));
-            manager.persist(new Professionnel("Prof 2",departement, Time.valueOf("9:00:00"), Time.valueOf("12:00:00"), Time.valueOf("14:00:00"), Time.valueOf("17:00:00"),"1110110"));
-
+            Departement departement2 = departementDao.departementsParId(2L);
+            manager.persist(new Professionnel("Vorc'h","Raoul","rvorch", "rvorch@univrennes.fr",
+                    "rvorch",departement, Time.valueOf("10:30:00"), Time.valueOf("12:30:00"), Time.valueOf("13:30:00"),
+                    Time.valueOf("18:00:00"), "1110110"));
+            manager.persist(new Professionnel("Bousse","Marc","mbousse","mbousse@univrennes.fr",
+                    "mbousse", departement2, Time.valueOf("9:00:00"), Time.valueOf("12:00:00"), Time.valueOf("14:00:00"),
+                    Time.valueOf("17:00:00"),"1110110"));
         }
     }
 

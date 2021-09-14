@@ -5,11 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import domain.Departement;
-import domain.Professionnel;
 
 public class DepartementDao {
 
-    private EntityManager manager;
+    private final EntityManager manager;
 
     public DepartementDao (javax.persistence.EntityManager manager) {
         this.manager = manager;
@@ -18,8 +17,8 @@ public class DepartementDao {
     public void createDepartements() {
         int numOfDepartements = manager.createQuery("Select a From Departement a", Departement.class).getResultList().size();
         if (numOfDepartements == 0) {
-            manager.persist(new Departement("MAN"));
-            manager.persist(new Departement("TAA"));
+            manager.persist(new Departement("Master 1 - CCN"));
+            manager.persist(new Departement("Master 2 - CCNa"));
         }
     }
 

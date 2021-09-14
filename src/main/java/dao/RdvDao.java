@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.lang.model.element.TypeElement;
 import javax.persistence.EntityManager;
 
 import domain.*;
@@ -25,20 +24,21 @@ public class RdvDao {
             UtilisateurDao utilisateurDao = new UtilisateurDao(manager);
             TypeRdvDao typeRdvDao = new TypeRdvDao(manager);
 
-            Professionnel professionnel = professionnelDao.professionnelsParId(4L);
-            Utilisateur utilisateur = utilisateurDao.searchUserById(6L);
-            TypeRdv typeRdv = typeRdvDao.typeRdvsParId(7L);
+            Professionnel professionnel = professionnelDao.professionnelsParId(2L);
+            Utilisateur utilisateur = utilisateurDao.searchUserById(4L);
+            TypeRdv typeRdv = typeRdvDao.typeRdvsParId(1L);
+            TypeRdv typeRdv2 = typeRdvDao.typeRdvsParId(2L);
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            manager.persist(new Rdv(typeRdv, professionnel, utilisateur, dateFormat.parse("2021-10-29 11:30"), dateFormat.parse("2021-10-29 12:00")));
-            manager.persist(new Rdv(typeRdv, professionnel, utilisateur, dateFormat.parse("2021-10-30 14:30"), dateFormat.parse("2021-10-30 15:00")));
+            manager.persist(new Rdv(typeRdv, professionnel, utilisateur, dateFormat.parse("2021-10-29 11:30")));
+            manager.persist(new Rdv(typeRdv2, professionnel, utilisateur, dateFormat.parse("2021-10-30 14:30")));
         }
     }
 
     public void listRdvTest() throws ParseException {
         ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
 
-        Professionnel professionnel = professionnelDao.professionnelsParId(4L);
+        Professionnel professionnel = professionnelDao.professionnelsParId(2L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDuJour = "2021-10-29";
         List<Rdv> resultList = rdvsParProfessionnelEtDate(professionnel, dateFormat.parse(dateDuJour + " 00:00"));
@@ -81,11 +81,14 @@ public class RdvDao {
 
         String [] joursPresenceTab = prof.getJoursDePresence().split("(?!^)");
         if(joursPresenceTab[c.get(Calendar.DAY_OF_WEEK)-1].equals("1")){
-            List<Rdv> resultCrenauxRes = rdvsParProfessionnelEtDate(prof, date);
-
-
+            List<Rdv> resultCreneauxRes = rdvsParProfessionnelEtDate(prof, date);
             Integer dureeTypeRdv = typeRdv.getDuree();
 
+
+            // Minimum duree
+            TypeRdvDao typeRdvDao = new TypeRdvDao(manager);
+            //Integer minDuree = ;
+            System.out.println("\nDuree minimum : " + typeRdvDao.minDureeTypeRdvByProf(prof));
             // Generate liste de creneaux dispo
 
         }
@@ -95,8 +98,8 @@ public class RdvDao {
         ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
         TypeRdvDao typeRdvDao = new TypeRdvDao(manager);
 
-        Professionnel professionnel = professionnelDao.professionnelsParId(4L);
-        TypeRdv typeRdv = typeRdvDao.typeRdvsParId(7L);
+        Professionnel professionnel = professionnelDao.professionnelsParId(2L);
+        TypeRdv typeRdv = typeRdvDao.typeRdvsParId(2L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String dateDuJour = "2021-10-29";
         listCreneauxDispo(professionnel, dateFormat.parse(dateDuJour + " 00:00"), typeRdv);

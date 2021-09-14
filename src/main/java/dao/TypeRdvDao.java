@@ -3,9 +3,6 @@ package dao;
 import domain.*;
 
 import javax.persistence.EntityManager;
-import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TypeRdvDao {
@@ -21,16 +18,16 @@ public class TypeRdvDao {
         if (numOfTypeRdvs == 0) {
             ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
 
-            Professionnel professionnel = professionnelDao.professionnelsParId(4L);
-            manager.persist(new TypeRdv("Rdv 1", professionnel, 15));
-            manager.persist(new TypeRdv("Rdv 2", professionnel, 30));
+            Professionnel professionnel = professionnelDao.professionnelsParId(2L);
+            manager.persist(new TypeRdv("Consultation", professionnel, 15));
+            manager.persist(new TypeRdv("Expertise", professionnel, 30));
         }
     }
 
-    public void listTypeRdvTest() throws ParseException {
+    public void listTypeRdvTest() {
         ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
 
-        Professionnel professionnel = professionnelDao.professionnelsParId(4L);
+        Professionnel professionnel = professionnelDao.professionnelsParId(2L);
         List<TypeRdv> resultList = listTypeRdvsParProf(professionnel);
         System.out.println("Nombre de type de rdv pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
         for (TypeRdv next : resultList) {
@@ -59,5 +56,8 @@ public class TypeRdvDao {
         manager.persist(typeRdv);
     }
 
+    public Integer minDureeTypeRdvByProf(Professionnel prof){
+        return manager.createNamedQuery("minDureeTypeRdvByProf").setParameter("prof", prof).getFirstResult();
+    }
 
 }
