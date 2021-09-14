@@ -1,19 +1,21 @@
 package domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dao.UtilisateurDao;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Calendar;
 import java.util.Date;
 
 
 @Entity
 @XmlRootElement(name = "rdv")
 @NamedQueries(
-        @NamedQuery(name="tousLesRdvParId", query="SELECT p FROM Rdv p WHERE p.id =:id")
+        {
+                @NamedQuery(name="tousLesRdvParId", query="SELECT r FROM Rdv r WHERE r.id =:id"),
+                @NamedQuery(name="tousLesRdvParProfEtDate", query="SELECT r FROM Rdv r WHERE r.professionnel=:prof AND  r.dateDebut >=:date AND r.dateFin <=: date2")
+        }
 )
+
 public class Rdv {
     private Long id;
 

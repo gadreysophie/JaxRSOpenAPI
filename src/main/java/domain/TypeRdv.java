@@ -10,7 +10,10 @@ import java.util.List;
 @Entity
 @XmlRootElement(name = "typeRdv")
 @NamedQueries(
-        @NamedQuery(name="tousLesTypeRdvParId", query="SELECT p FROM TypeRdv p WHERE p.id =:id")
+        {
+                @NamedQuery(name="tousLesTypeRdvParId", query="SELECT t FROM TypeRdv t WHERE t.id =:id"),
+                @NamedQuery(name="tousLesTypeRdvParProf", query="SELECT t FROM TypeRdv t WHERE t.professionnel =:prof")
+        }
 )
 
 public class TypeRdv {
