@@ -57,7 +57,7 @@ public class TypeRdvDao {
     }
 
     public Integer minDureeTypeRdvByProf(Professionnel prof){
-        return manager.createNamedQuery("minDureeTypeRdvByProf").setParameter("prof", prof).getFirstResult();
+        return (Integer) manager.createNamedQuery("minDureeTypeRdvByProf").setParameter("prof", prof).getSingleResult();
     }
 
 }
