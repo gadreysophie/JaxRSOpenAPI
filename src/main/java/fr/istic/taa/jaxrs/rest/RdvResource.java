@@ -25,7 +25,6 @@ public class RdvResource {
         EntityManager manager = factory.createEntityManager();
         RdvDao rdvDao = new RdvDao(manager);
 
-        //return new Professionnel("gghggg");
         return rdvDao.rdvsParId(rdvId);
     }
 
