@@ -1,13 +1,12 @@
 package dao;
 
-import domain.Utilisateur;
 import javax.persistence.EntityManager;
 import java.util.List;
 import domain.Personne;
 
 public class PersonneDao {
 
-    private EntityManager manager;
+    private final EntityManager manager;
 
     public PersonneDao (EntityManager manager){
         this.manager = manager;
