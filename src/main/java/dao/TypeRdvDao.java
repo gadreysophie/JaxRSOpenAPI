@@ -3,11 +3,14 @@ package dao;
 import domain.*;
 
 import javax.persistence.EntityManager;
+import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TypeRdvDao {
 
-    private EntityManager manager;
+    private final EntityManager manager;
 
     public TypeRdvDao (javax.persistence.EntityManager manager) {
         this.manager = manager;
@@ -24,6 +27,17 @@ public class TypeRdvDao {
         }
     }
 
+    public void listTypeRdvTest() throws ParseException {
+        ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
+
+        Professionnel professionnel = professionnelDao.professionnelsParId(4L);
+        List<TypeRdv> resultList = listTypeRdvsParProf(professionnel);
+        System.out.println("Nombre de type de rdv pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
+        for (TypeRdv next : resultList) {
+            System.out.println("Type de rdv suivant : " + next);
+        }
+    }
+
     public void listTypeRdvs() {
         List<TypeRdv> resultList = manager.createQuery("Select a From TypeRdv a", TypeRdv.class).getResultList();
         System.out.println("Nombre de TypeRdvs :" + resultList.size());
@@ -35,6 +49,10 @@ public class TypeRdvDao {
     public TypeRdv typeRdvsParId(Long id){
         return (TypeRdv) manager.createNamedQuery("tousLesTypeRdvParId").setParameter("id", id).getSingleResult();
 
+    }
+
+    public List<TypeRdv> listTypeRdvsParProf(Professionnel prof) {
+        return manager.createNamedQuery("tousLesTypeRdvParProf").setParameter("prof", prof).getResultList();
     }
 
     public void addTypeRdv (TypeRdv typeRdv){
