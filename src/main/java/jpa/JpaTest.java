@@ -13,8 +13,6 @@ public class JpaTest {
 	public static void main(String[] args) throws ParseException {
 		EntityManagerFactory factory = Persistence
 				.createEntityManagerFactory("dev");
-		//EntityManagerFactory factory = Persistence
-		//				.createEntityManagerFactory("mysql");
 		EntityManager manager = factory.createEntityManager();
 
 		ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
@@ -47,7 +45,7 @@ public class JpaTest {
 		professionnelDao.listProfessionnelsParNom("Prof");
 		professionnelDao.listProfessionnels();
 		departementDao.listDepartements();
-		utilisateurDao.printlistUtilisateurs();
+		utilisateurDao.printListUtilisateurs();
 		rdvDao.listRdvs();
 		personneDao.listPersonnes();
 		typeRdvDao.listTypeRdvs();

@@ -6,7 +6,6 @@ import domain.Utilisateur;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +20,11 @@ public class ListUser extends HttpServlet {
     private EntityManagerFactory factory;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         factory = Persistence.createEntityManagerFactory("dev");
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         EntityManager manager = factory.createEntityManager();
         UtilisateurDao utilisateurDao = new UtilisateurDao(manager);
 
