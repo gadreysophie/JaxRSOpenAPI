@@ -18,7 +18,7 @@ public class Departement {
 
     private String nom;
 
-    private List<Professionnel> professionnels = new ArrayList<Professionnel>();
+    private List<Professionnel> professionnels = new ArrayList<>();
 
     public Departement() {
     }
@@ -28,7 +28,7 @@ public class Departement {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator="generatorIdDepartement")
     public Long getId() {
         return id;
     }

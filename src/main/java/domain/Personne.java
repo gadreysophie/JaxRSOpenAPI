@@ -33,7 +33,7 @@ public abstract class Personne {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator="generatorIdPersonne")
     @XmlElement(name = "id")
     public Long getId() {
         return id;
