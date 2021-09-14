@@ -1,5 +1,7 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -24,8 +26,13 @@ public class Utilisateur extends Personne {
         super(nom);
     }
 
+    public Utilisateur (String nom, String prenom, String identifiant, String mail, String mdp) {
+        super(nom, prenom, identifiant, mail, mdp);
+    }
+
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     public List<Rdv> getRdvs() {
         return rdvs;
     }
