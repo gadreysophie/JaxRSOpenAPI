@@ -26,8 +26,8 @@ public class RdvDao {
             manager.persist(professionnel);
             manager.persist(utilisateur);
 
-            manager.persist(new Rdv("MAN", 2, professionnel, utilisateur));
-            manager.persist(new Rdv("TAA", 3, professionnel, utilisateur));
+            manager.persist(new Rdv("MAN", professionnel, utilisateur));
+            manager.persist(new Rdv("TAA", professionnel, utilisateur));
         }
     }
 

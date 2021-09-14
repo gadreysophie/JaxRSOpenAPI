@@ -1,33 +1,28 @@
 package domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dao.UtilisateurDao;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @Entity
-@XmlRootElement(name = "rdv")
-@NamedQueries(
-        @NamedQuery(name="tousLesRdvParId", query="SELECT p FROM Rdv p WHERE p.id =:id")
-)
-public class Rdv {
+@XmlRootElement(name = "typerdv")
+public class TypeRdv {
     private Long id;
 
     private String nom;
 
     private Professionnel professionnel;
 
-    private Utilisateur utilisateur;
+    private Integer duree;
 
-    public Rdv() {
+    public TypeRdv() {
     }
 
-    public Rdv(String nom, Professionnel professionnel, Utilisateur utilisateur) {
+    public TypeRdv(String nom, Professionnel professionnel, Integer duree) {
         this.nom = nom;
         this.professionnel = professionnel;
-        this.utilisateur = utilisateur;
+        this.duree = duree;
     }
 
     @Id
@@ -38,6 +33,14 @@ public class Rdv {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getDuree() {
+        return duree;
+    }
+
+    public void setDuree(Integer duree) {
+        this.duree = duree;
     }
 
     public String getNom() {
@@ -56,20 +59,5 @@ public class Rdv {
 
     public void setProfessionnel(Professionnel professionnel) {
         this.professionnel = professionnel;
-    }
-
-    @ManyToOne
-    @JsonIgnore
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
-    }
-
-    @Override
-    public String toString() {
-        return "RDV [id=" + id + ", nom=" + nom + "]";
     }
 }
