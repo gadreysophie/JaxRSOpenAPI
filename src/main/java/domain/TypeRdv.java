@@ -6,7 +6,11 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@XmlRootElement(name = "typerdv")
+@XmlRootElement(name = "typeRdv")
+@NamedQueries(
+        @NamedQuery(name="tousLesTypeRdvParId", query="SELECT p FROM TypeRdv p WHERE p.id =:id")
+)
+
 public class TypeRdv {
     private Long id;
 

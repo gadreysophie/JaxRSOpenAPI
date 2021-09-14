@@ -24,6 +24,7 @@ public class JpaTest {
 		UtilisateurDao utilisateurDao = new UtilisateurDao(manager);
 		RdvDao rdvDao = new RdvDao(manager);
 		PersonneDao personneDao = new PersonneDao(manager);
+		TypeRdvDao typeRdvDao = new TypeRdvDao(manager);
 
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
@@ -37,6 +38,8 @@ public class JpaTest {
 
 			rdvDao.createRdvs();
 
+			typeRdvDao.createTypeRdvs();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,6 +52,7 @@ public class JpaTest {
 		utilisateurDao.printlistUtilisateurs();
 		rdvDao.listRdvs();
 		personneDao.listPersonnes();
+		typeRdvDao.listRdvs();
 
 		manager.close();
 		factory.close();
