@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @XmlRootElement(name = "typeRdv")
@@ -19,6 +21,8 @@ public class TypeRdv {
     private Professionnel professionnel;
 
     private Integer duree;
+
+    private List<Rdv> rdvs = new ArrayList<>();
 
     public TypeRdv() {
     }
@@ -63,6 +67,15 @@ public class TypeRdv {
 
     public void setProfessionnel(Professionnel professionnel) {
         this.professionnel = professionnel;
+    }
+
+    @OneToMany(mappedBy = "typeRdv", cascade = CascadeType.PERSIST)
+    public List<Rdv> getRdvs() {
+        return rdvs;
+    }
+
+    public void setRdvs(List<Rdv> rdvs) {
+        this.rdvs = rdvs;
     }
 
     @Override

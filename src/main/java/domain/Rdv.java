@@ -5,6 +5,8 @@ import dao.UtilisateurDao;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Calendar;
+import java.util.Date;
 
 
 @Entity
@@ -15,19 +17,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Rdv {
     private Long id;
 
-    private String nom;
+    private TypeRdv typeRdv;
 
     private Professionnel professionnel;
 
     private Utilisateur utilisateur;
 
+    private Date dateDebut;
+
+    private Date dateFin;
+
     public Rdv() {
     }
 
-    public Rdv(String nom, Professionnel professionnel, Utilisateur utilisateur) {
-        this.nom = nom;
+    public Rdv(TypeRdv typeRdv, Professionnel professionnel, Utilisateur utilisateur, Date dateDebut, Date dateFin) {
+        this.typeRdv = typeRdv;
         this.professionnel = professionnel;
         this.utilisateur = utilisateur;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
     }
 
     @Id
@@ -40,12 +48,13 @@ public class Rdv {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    @ManyToOne
+    public TypeRdv getTypeRdv() {
+        return typeRdv;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setTypeRdv(TypeRdv typeRdv) {
+        this.typeRdv = typeRdv;
     }
 
     @ManyToOne
@@ -68,8 +77,25 @@ public class Rdv {
         this.utilisateur = utilisateur;
     }
 
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public void setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public void setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+    }
+
     @Override
     public String toString() {
-        return "RDV [id=" + id + ", nom=" + nom + "]";
+        return "RDV [id=" + id + ", Type de RDV=" + typeRdv + ", professionnel=" + professionnel + ", " +
+                "utilisateur=" + utilisateur + ", Date début=" + dateDebut + ", date fin=" + dateFin + "]";
     }
 }

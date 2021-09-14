@@ -1,14 +1,14 @@
 package dao;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import domain.Departement;
-import domain.Professionnel;
-import domain.Rdv;
-import domain.Utilisateur;
+import domain.*;
 
 public class RdvDao {
     private EntityManager manager;
@@ -17,16 +17,20 @@ public class RdvDao {
         this.manager = manager;
     }
 
-    public void createRdvs() {
+    public void createRdvs() throws ParseException {
         int numOfRdvs = manager.createQuery("Select a From Rdv a", Rdv.class).getResultList().size();
         if (numOfRdvs == 0) {
             ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
             UtilisateurDao utilisateurDao = new UtilisateurDao(manager);
+            TypeRdvDao typeRdvDao = new TypeRdvDao(manager);
 
             Professionnel professionnel = professionnelDao.professionnelsParId(4L);
             Utilisateur utilisateur = utilisateurDao.searchUserById(6L);
-            manager.persist(new Rdv("MAN", professionnel, utilisateur));
-            manager.persist(new Rdv("TAA", professionnel, utilisateur));
+            TypeRdv typeRdv = typeRdvDao.typeRdvsParId(7L);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            manager.persist(new Rdv(typeRdv, professionnel, utilisateur, dateFormat.parse("2021-10-29 11:30"), dateFormat.parse("2021-10-29 12:00")));
+            manager.persist(new Rdv(typeRdv, professionnel, utilisateur, dateFormat.parse("2021-10-29 14:30"), dateFormat.parse("2021-10-29 15:00")));
         }
     }
 
