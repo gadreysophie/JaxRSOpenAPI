@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import domain.Departement;
 import domain.Professionnel;
+import domain.Utilisateur;
 
 public class ProfessionnelDao {
 
@@ -46,6 +47,10 @@ public class ProfessionnelDao {
     public Professionnel professionnelsParId(Long id){
         return (Professionnel) manager.createNamedQuery("tousLesProfessionnelsParId").setParameter("id", id).getSingleResult();
 
+    }
+
+    public void addProf(Professionnel prof){
+        manager.persist(prof);
     }
 
 

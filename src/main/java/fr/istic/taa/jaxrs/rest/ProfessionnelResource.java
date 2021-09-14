@@ -34,8 +34,12 @@ public class ProfessionnelResource {
     @Consumes("application/json")
     public Response addProfessionnel(
             @Parameter(description = "Professionnel object that needs to be added to the store", required = true) Professionnel prof) {
-        // add pet
-        return Response.ok().entity("SUCCESS").build();
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("dev");
+        EntityManager manager = factory.createEntityManager();
+        ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
+        professionnelDao.addProf(prof);
+        return Response.ok().entity(prof).build();
+
     }
 
 }
