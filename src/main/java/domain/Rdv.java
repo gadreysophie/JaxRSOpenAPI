@@ -1,14 +1,17 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dao.UtilisateurDao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
+@XmlRootElement(name = "rdv")
+@NamedQueries(
+        @NamedQuery(name="tousLesRdvParId", query="SELECT p FROM Rdv p WHERE p.id =:id")
+)
 public class Rdv {
     private Long id;
 
@@ -53,6 +56,7 @@ public class Rdv {
     public void setDureeMinimale(int dureeMinimale) {this.dureeMinimale = dureeMinimale;}
 
     @ManyToOne
+    @JsonIgnore
     public Professionnel getProfessionnel() {
         return professionnel;
     }
@@ -62,6 +66,7 @@ public class Rdv {
     }
 
     @ManyToOne
+    @JsonIgnore
     public Utilisateur getUtilisateur() {
         return utilisateur;
     }

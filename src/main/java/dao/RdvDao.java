@@ -38,4 +38,15 @@ public class RdvDao {
             System.out.println("Rdv suivant : " + next);
         }
     }
+
+    public Rdv rdvsParId(Long id){
+        return (Rdv) manager.createNamedQuery("tousLesRdvParId").setParameter("id", id).getSingleResult();
+
+    }
+
+    public void addRdv (Rdv rdv){
+        manager.persist(rdv);
+    }
+
+
 }

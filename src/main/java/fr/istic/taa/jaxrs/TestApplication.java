@@ -22,8 +22,10 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import domain.Professionnel;
+import domain.Rdv;
 import fr.istic.taa.jaxrs.rest.PetResource;
 import fr.istic.taa.jaxrs.rest.ProfessionnelResource;
+import fr.istic.taa.jaxrs.rest.RdvResource;
 import fr.istic.taa.jaxrs.rest.UserResource;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
@@ -38,6 +40,7 @@ public class TestApplication extends Application {
         clazzes.add(PetResource.class);
         clazzes.add(UserResource.class);
         clazzes.add(ProfessionnelResource.class);
+        clazzes.add(RdvResource.class);
         clazzes.add(OpenApiResource.class);
         
 
