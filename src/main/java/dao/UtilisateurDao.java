@@ -25,10 +25,11 @@ public class UtilisateurDao {
 
     public void printListUtilisateurs() {
         List<Utilisateur> resultList = manager.createQuery("Select a From Utilisateur a", Utilisateur.class).getResultList();
-        System.out.println("Nombre d'utilisateurs : " + resultList.size());
+        System.out.println("\nNombre d'utilisateurs : " + resultList.size());
         for (Utilisateur next : resultList) {
             System.out.println("Utilisateur suivant : " + next);
         }
+        System.out.println();
     }
 
     public List<Utilisateur> listUtilisateurs() {

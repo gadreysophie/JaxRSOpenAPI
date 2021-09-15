@@ -24,10 +24,11 @@ public class DepartementDao {
 
     public void listDepartements() {
         List<Departement> resultList = manager.createQuery("Select a From Departement a", Departement.class).getResultList();
-        System.out.println("Nombre de départements : " + resultList.size());
+        System.out.println("\nNombre de départements : " + resultList.size());
         for (Departement next : resultList) {
             System.out.println("Département suivant : " + next);
         }
+        System.out.println();
     }
 
     public Departement departementsParId(Long id){

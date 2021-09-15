@@ -29,18 +29,20 @@ public class TypeRdvDao {
 
         Professionnel professionnel = professionnelDao.professionnelsParId(2L);
         List<TypeRdv> resultList = listTypeRdvsParProf(professionnel);
-        System.out.println("Nombre de type de rdv pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
+        System.out.println("\nNombre de type de rdv pour " + professionnel.getNom() + " " + professionnel.getPrenom() + ": " + resultList.size());
         for (TypeRdv next : resultList) {
             System.out.println("Type de rdv suivant : " + next);
         }
+        System.out.println();
     }
 
     public void listTypeRdvs() {
         List<TypeRdv> resultList = manager.createQuery("Select a From TypeRdv a", TypeRdv.class).getResultList();
-        System.out.println("Nombre de TypeRdvs :" + resultList.size());
+        System.out.println("\nNombre de TypeRdvs :" + resultList.size());
         for (TypeRdv next : resultList) {
             System.out.println("TypeRdv suivant : " + next);
         }
+        System.out.println();
     }
 
     public TypeRdv typeRdvsParId(Long id){
