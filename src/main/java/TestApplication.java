@@ -20,7 +20,6 @@ import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import fr.istic.taa.jaxrs.rest.*;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 import rest.DepartementResource;
 import rest.ProfessionnelResource;
@@ -35,7 +34,6 @@ public class TestApplication extends Application {
 
         final Set<Class<?>> clazzes = new HashSet<Class<?>>();
 
-        clazzes.add(PetResource.class);
         clazzes.add(UserResource.class);
         clazzes.add(ProfessionnelResource.class);
         clazzes.add(RdvResource.class);

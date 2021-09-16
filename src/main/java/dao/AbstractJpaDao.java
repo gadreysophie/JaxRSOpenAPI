@@ -1,7 +1,5 @@
 package dao;
 
-import fr.istic.taa.jaxrs.dao.generic.EntityManagerHelper;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -59,6 +57,4 @@ public abstract class AbstractJpaDao<K, T extends Serializable> implements IGene
 		T entity = findOne(entityId);
 		delete(entity);
 	}
-
-
 }
