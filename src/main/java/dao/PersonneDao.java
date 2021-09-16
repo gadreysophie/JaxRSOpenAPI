@@ -6,12 +6,7 @@ import domain.Personne;
 
 public class PersonneDao {
 
-    private final EntityManager manager;
-
-    public PersonneDao (EntityManager manager){
-        this.manager = manager;
-    }
-
+    private final EntityManager manager = EntityManagerHelper.getEntityManager();
 
     public void listPersonnes() {
         List<Personne> resultList = manager.createQuery("Select p From Personne p", Personne.class).getResultList();
