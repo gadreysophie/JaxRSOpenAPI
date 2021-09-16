@@ -21,10 +21,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
-import rest.DepartementResource;
-import rest.ProfessionnelResource;
-import rest.RdvResource;
-import rest.UserResource;
+import rest.*;
 
 public class TestApplication extends Application {
 
@@ -38,6 +35,7 @@ public class TestApplication extends Application {
         clazzes.add(ProfessionnelResource.class);
         clazzes.add(RdvResource.class);
         clazzes.add(DepartementResource.class);
+        clazzes.add(SwaggerResource.class);
         clazzes.add(OpenApiResource.class);
 
         return clazzes;
