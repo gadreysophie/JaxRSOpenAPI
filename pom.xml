@@ -76,6 +76,20 @@
 			<version>2.1.4</version>
 		</dependency>
 
+
+		<!-- OpenAPI-->
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-jaxrs2</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-jaxrs2-servlet-initializer-v2</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<defaultGoal>install</defaultGoal>
