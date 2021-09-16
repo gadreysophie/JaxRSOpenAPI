@@ -120,7 +120,7 @@ public class RdvDao {
 //                System.out.println("Début rdv : "+debutRdv);
 //                System.out.println("Fin rdv : "+finRdv);
 
-                if(finRdv.before(prof.getHeureFinPause())) {
+                if(finRdv.before(prof.getHeureFinPause()) || finRdv.equals(prof.getHeureFinPause())) {
                     constructTabOfTempsLibre(debutRdv, finRdv, tabDebutCreneauxDispoMatin, tabFinCreneauxDispoMatin);
 //                    System.out.println(tabDebutCreneauxDispoMatin);
 //                    System.out.println(tabFinCreneauxDispoMatin);
