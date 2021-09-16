@@ -3,9 +3,6 @@ package rest;
 import dao.UtilisateurDao;
 import domain.Utilisateur;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,15 +14,8 @@ import java.io.PrintWriter;
         urlPatterns={"/AddUser"})
 public class AddUser extends HttpServlet {
 
-    private EntityManagerFactory factory;
-
-    @Override
-    public void init() {
-        factory = Persistence.createEntityManagerFactory("dev");
-    }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        EntityManager manager = factory.createEntityManager();
-        UtilisateurDao userDao = new UtilisateurDao(manager);
+        UtilisateurDao userDao = new UtilisateurDao();
 
         // Création de l'objet utilisateur
         Utilisateur user = new Utilisateur();
@@ -33,10 +23,7 @@ public class AddUser extends HttpServlet {
         user.setPrenom(request.getParameter("prenom"));
 
         // Ajout données à la database
-        manager.getTransaction().begin();
         userDao.addUser(user);
-        manager.getTransaction().commit();
-        manager.close();
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -49,10 +36,5 @@ public class AddUser extends HttpServlet {
                 + request.getParameter("prenom") +
                 "</UL>\n" +
                 "</BODY></HTML>");
-    }
-
-    @Override
-    public void destroy() {
-        factory.close();
     }
 }

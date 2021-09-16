@@ -17,16 +17,8 @@ import java.io.PrintWriter;
         urlPatterns={"/ListUser"})
 public class ListUser extends HttpServlet {
 
-    private EntityManagerFactory factory;
-
-    @Override
-    public void init() {
-        factory = Persistence.createEntityManagerFactory("dev");
-    }
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        EntityManager manager = factory.createEntityManager();
-        UtilisateurDao utilisateurDao = new UtilisateurDao(manager);
+        UtilisateurDao utilisateurDao = new UtilisateurDao();
 
         response.setContentType("text/html");
 
@@ -45,9 +37,4 @@ public class ListUser extends HttpServlet {
                 "</BODY></HTML>");
     }
 
-
-    @Override
-    public void destroy() {
-        factory.close();
-    }
 }
