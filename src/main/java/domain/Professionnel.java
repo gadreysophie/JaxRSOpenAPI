@@ -14,7 +14,7 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name="tousLesProfessionnelsParNom", query="SELECT p FROM Professionnel p WHERE p.nom LIKE CONCAT('%',:name,'%') ORDER BY p.nom"),
-                @NamedQuery(name="tousLesProfessionnelsParId", query="SELECT p FROM Professionnel p WHERE p.id =:id")
+                @NamedQuery(name="professionnelParId", query="SELECT p FROM Professionnel p WHERE p.id =:id")
         }
 )
 public class Professionnel extends Personne {

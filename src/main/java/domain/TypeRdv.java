@@ -11,7 +11,7 @@ import java.util.List;
 @XmlRootElement(name = "typeRdv")
 @NamedQueries(
         {
-                @NamedQuery(name="tousLesTypeRdvParId", query="SELECT t FROM TypeRdv t WHERE t.id =:id"),
+                @NamedQuery(name="typeRdvParId", query="SELECT t FROM TypeRdv t WHERE t.id =:id"),
                 @NamedQuery(name="tousLesTypeRdvParProf", query="SELECT t FROM TypeRdv t WHERE t.professionnel =:prof"),
                 @NamedQuery(name="minDureeTypeRdvByProf", query="SELECT MIN(t.duree) FROM TypeRdv t WHERE t.professionnel =:prof"),
         }

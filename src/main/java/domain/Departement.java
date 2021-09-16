@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "dept")
 @NamedQueries(
         {
-                @NamedQuery(name="tousLesDepartementsParId", query="SELECT p FROM Departement p WHERE p.id =:id")
+                @NamedQuery(name="departementParId", query="SELECT p FROM Departement p WHERE p.id =:id")
         }
 )
 public class Departement {
