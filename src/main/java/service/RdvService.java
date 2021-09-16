@@ -13,6 +13,14 @@ public class RdvService {
 
     static RdvDao rdvDao = new RdvDao();
 
+    /**
+     * Retourne la liste des disponibilités d'un professionnel
+     * en fonction de ses créneaux disponibles enregistrés
+     * @param prof Professionnel
+     * @param date Date
+     * @param typeRdv Type de Rdv
+     * @return la liste des créneaux disponibles par professionnel pour une date et par type de Rdv
+     */
     public static HashMap<Integer, List<Time>> listCreneauxDispo(Professionnel prof, Date date, TypeRdv typeRdv){
         Calendar c = Calendar.getInstance();
         c.setTime(date);
@@ -87,6 +95,13 @@ public class RdvService {
 
     }
 
+    /**
+     * Construit le tableau des disponibilités du professionnel
+     * @param debutRdv heure de début du rdv
+     * @param finRdv heure de fin du rdv
+     * @param tabDebutCreneau tableau des heures de début des créneaux
+     * @param tabFinCreneau tableau des heures de fin des créneaux
+     */
     private static void constructTabOfTempsLibre(Time debutRdv, Time finRdv, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         Time time1;
         Time time2;
@@ -124,6 +139,15 @@ public class RdvService {
         }
     }
 
+    /**
+     * Construit le tableau des disponibilités d'un professionnel en fonction de la duree d'un rdv
+     * @param tabDebutTempsLibre tableau de l'heure de début de la disponibilité
+     * @param tabFinTempsLibre tableau de l'heure de fin de la disponibilité
+     * @param dureeRdv durée du rdv
+     * @param minduree minimum de la duree des rdv d'un professionnel
+     * @param tabDebutCreneau tableau des heures de début des créneaux
+     * @param tabFinCreneau tableau des heures de fin des créneaux
+     */
     private static void constructTabOfCreneaux(List<Time> tabDebutTempsLibre, List<Time> tabFinTempsLibre, Integer dureeRdv, Integer minduree, List<Time> tabDebutCreneau, List<Time> tabFinCreneau){
         for (int i = 0; i < tabDebutTempsLibre.size(); i++) {
             Time heureDebutTempsLibre = tabDebutTempsLibre.get(i);
