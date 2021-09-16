@@ -14,17 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.istic.taa.jaxrs;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.ws.rs.core.Application;
 
-import domain.Professionnel;
-import domain.Rdv;
 import fr.istic.taa.jaxrs.rest.*;
 import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
+import rest.DepartementResource;
+import rest.ProfessionnelResource;
+import rest.RdvResource;
+import rest.UserResource;
 
 public class TestApplication extends Application {
 
