@@ -74,7 +74,6 @@ public class TypeRdv {
     }
 
     @OneToMany(mappedBy = "typeRdv", cascade = CascadeType.PERSIST)
-    @JsonIgnore
     public List<Rdv> getRdvs() {
         return rdvs;
     }

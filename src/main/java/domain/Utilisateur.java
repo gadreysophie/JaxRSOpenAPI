@@ -32,7 +32,6 @@ public class Utilisateur extends Personne {
 
 
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
-    @JsonIgnore
     public List<Rdv> getRdvs() {
         return rdvs;
     }

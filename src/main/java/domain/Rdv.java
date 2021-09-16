@@ -56,6 +56,7 @@ public class Rdv {
     }
 
     @ManyToOne
+    @JsonIgnore
     public TypeRdv getTypeRdv() {
         return typeRdv;
     }
