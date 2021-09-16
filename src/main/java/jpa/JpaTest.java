@@ -11,19 +11,14 @@ import java.text.ParseException;
 public class JpaTest {
 
 	public static void main(String[] args) throws ParseException {
-		EntityManagerFactory factory = Persistence
-				.createEntityManagerFactory("dev");
-		EntityManager manager = factory.createEntityManager();
 
-		ProfessionnelDao professionnelDao = new ProfessionnelDao(manager);
-		DepartementDao departementDao = new DepartementDao(manager);
-		UtilisateurDao utilisateurDao = new UtilisateurDao(manager);
-		RdvDao rdvDao = new RdvDao(manager);
-		PersonneDao personneDao = new PersonneDao(manager);
-		TypeRdvDao typeRdvDao = new TypeRdvDao(manager);
+		ProfessionnelDao professionnelDao = new ProfessionnelDao();
+		DepartementDao departementDao = new DepartementDao();
+		UtilisateurDao utilisateurDao = new UtilisateurDao();
+		RdvDao rdvDao = new RdvDao();
+		PersonneDao personneDao = new PersonneDao();
+		TypeRdvDao typeRdvDao = new TypeRdvDao();
 
-		EntityTransaction tx = manager.getTransaction();
-		tx.begin();
 		try {
 
 			departementDao.createDepartements();
@@ -39,7 +34,6 @@ public class JpaTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		tx.commit();
 
 
 		professionnelDao.listProfessionnelsParNom("Prof");
@@ -53,9 +47,6 @@ public class JpaTest {
 		rdvDao.listRdvTest();
 		typeRdvDao.listTypeRdvTest();
 		rdvDao.testListCreneauxDispo();
-
-		manager.close();
-		factory.close();
 	}
 
 }
